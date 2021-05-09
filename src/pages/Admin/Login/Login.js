@@ -3,16 +3,22 @@ import {
   Input, Button, Heading, Flex,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-// import { dispatchLoginAdminUser } from '../../redux/triggers';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { adminLoginDispatch } from '../../../store/triggers';
 
 const Login = () => {
   const [aid, setAid] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const adminUser = useSelector(({ adminData }) => adminData.user);
+  if (adminUser) {
+    return <Redirect to="/admin" />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    adminLoginDispatch(aid, password)(dispatch);
   };
 
   return (
@@ -22,7 +28,7 @@ const Login = () => {
       justifyContent="center"
       mt="40"
     >
-      <form css={{ maxWidth: 350 }}>
+      <form css={{ maxWidth: 350 }} onSubmit={handleSubmit}>
         <Heading>Admin login</Heading>
         <Input
           placeholder="aid"
