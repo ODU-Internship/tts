@@ -9,12 +9,16 @@
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react": "^10.2.1",
     "@testing-library/user-event": "^12.0.2",
+    "axios": "^0.21.1",
     "framer-motion": "^4.0.0",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^3.0.0",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "redux": "^4.1.0",
     "web-vitals": "^0.2.2"
   },
   "scripts": {
@@ -39,13 +43,13 @@
     ]
   },
   "devDependencies": {
+    "@emotion/eslint-plugin": "^11.2.0",
     "eslint": "^7.25.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "@emotion/eslint-plugin": "^11.2.0",
     "prettier": "^2.2.1"
   }
 }
