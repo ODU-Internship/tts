@@ -1,4 +1,4 @@
-import { combineReducers } from 'react-redux';
+import { combineReducers } from 'redux';
 import adminReducer from './admin/reducer';
 import supervisorReducer from './supervisor/reducer';
 
