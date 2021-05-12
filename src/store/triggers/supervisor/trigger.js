@@ -5,4 +5,5 @@ import { postSupervisorLogin } from '../../apis';
 export const supervisorLoginDispatch = (sid, password) => async (dispatch) => {
   const { data: supervisor } = await postSupervisorLogin(sid, password);
   dispatch(updateSupervisorUser(supervisor));
+  return supervisor;
 };
