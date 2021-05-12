@@ -1,8 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { Box, Flex, Heading } from '@chakra-ui/react';
-import {
-  LineChart, Line, XAxis, CartesianGrid, Tooltip,
-} from 'recharts';
 import Analytics from './components/Analytics/Analytics';
 import Messages from './components/Messages/Messages';
 

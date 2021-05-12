@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import {
-  Box, Text, Grid, Heading, Flex, useMediaQuery, Container,
+  Box, Text, Grid, Heading, Flex, useMediaQuery,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import {

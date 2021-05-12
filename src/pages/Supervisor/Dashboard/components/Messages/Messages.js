@@ -11,9 +11,8 @@ import {
   Stack,
   Badge,
 } from '@chakra-ui/react';
-import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Link, useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 const Tr = styled(BaseTR)(({ theme }) => {
   const { colors } = theme;
@@ -49,9 +48,9 @@ const Messages = () => {
               <Td>
                 <Stack direction="row">
                   <Badge>communication</Badge>
-                  <Badge colorScheme="green">Success</Badge>
-                  <Badge colorScheme="red">Removed</Badge>
-                  <Badge colorScheme="purple">New</Badge>
+                  <Badge colorScheme="green">Email</Badge>
+                  <Badge colorScheme="red">Sad</Badge>
+                  <Badge colorScheme="yellow">Happy</Badge>
                 </Stack>
 
               </Td>
