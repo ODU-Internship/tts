@@ -12,6 +12,9 @@ const Home = () => (
       <Heading size="lg" color="gray.600">MAP: Supervisor Dashboard</Heading>
     </Box>
     <Flex px="10" py="10" flexDirection="column" alignItems="center">
+      <Box width="100%" maxW={1200}>
+        <Heading size="lg">Sandbox</Heading>
+      </Box>
       <Analytics />
       <Messages />
     </Flex>

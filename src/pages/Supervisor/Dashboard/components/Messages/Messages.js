@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Link, useHistory, useRouteMatch } from 'react-router-dom';
 
 const Tr = styled(BaseTR)(({ theme }) => {
   const { colors } = theme;
@@ -25,7 +26,8 @@ const Tr = styled(BaseTR)(({ theme }) => {
 });
 
 const Messages = () => {
-  const { colors } = useTheme();
+  const history = useHistory();
+  const { path } = useRouteMatch();
   return (
     <Box maxW="1200px" width="100%" mt="5">
       <Heading size="lg">Recent Tickets</Heading>
@@ -41,7 +43,7 @@ const Messages = () => {
             </BaseTR>
           </Thead>
           <Tbody>
-            <Tr>
+            <Tr onClick={() => history.push(`${path}/djlskf`)}>
               <Td>Email</Td>
               <Td>Welcome to map communication.....</Td>
               <Td>
@@ -65,7 +67,6 @@ const Messages = () => {
                   <Badge colorScheme="red">Removed</Badge>
                   <Badge colorScheme="purple">New</Badge>
                 </Stack>
-
               </Td>
               <Td isNumeric>+0.91</Td>
             </Tr>
