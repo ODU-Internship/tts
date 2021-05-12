@@ -7,9 +7,9 @@ import PropTypes from 'prop-types';
 const SupervisorRoute = ({ component, ...rest }) => {
   const supervisor = useSelector(({ supervisorData }) => supervisorData.user);
   const { path } = useRouteMatch();
-  if (!supervisor) {
-    return <Redirect to={`${path}/login`} />;
-  }
+  // if (!supervisor) {
+  //   return <Redirect to={`${path}/login`} />;
+  // }
   return <Route {...rest} component={component} />;
 };
 
