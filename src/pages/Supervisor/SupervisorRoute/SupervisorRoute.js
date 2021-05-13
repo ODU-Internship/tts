@@ -12,7 +12,6 @@ const SupervisorRoute = ({ component, ...rest }) => {
   }
   return <Route {...rest} component={component} />;
 };
-
 SupervisorRoute.propTypes = {
   component: PropTypes.func.isRequired,
 };
