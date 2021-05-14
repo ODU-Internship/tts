@@ -4,7 +4,6 @@ import {
   Badge,
   Button,
   Heading,
-  HStack,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,7 +13,6 @@ import {
   ModalOverlay,
   Box,
   Text,
-  VStack,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
