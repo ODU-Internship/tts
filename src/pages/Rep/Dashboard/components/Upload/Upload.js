@@ -19,11 +19,13 @@ const Upload = () => {
   const [categories, setCategories] = useState([]);
   const [company, setCompany] = useState('');
   const [message, setMessage] = useState('');
+
   const [{ loading }, doFetch] = useAsyncFn(async () => {
     await addRepMessageDispatch(
       custName, custDetails, categories.map(({ value }) => value), message, company, type,
     )(dispatch);
-  });
+  }, [custName, custDetails, categories, message, company, type]);
+
   return (
     <Box>
       <Stack direction={['column', 'row']} spacing="24px">
