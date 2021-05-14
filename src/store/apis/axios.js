@@ -15,7 +15,15 @@ export const sAxios = axios.create({
   baseURL: 'https://tts-server-alpha.herokuapp.com/supervisors',
 });
 
+export const rAxios = axios.create({
+  baseURL: 'https://tts-server-alpha.herokuapp.com/reps',
+});
+
 export const setSupervisorHeader = (accessToken) => {
+  sAxios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+};
+
+export const setRepHeader = (accessToken) => {
   sAxios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 };
 
