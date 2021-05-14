@@ -1,28 +1,26 @@
 /** @jsxImportSource @emotion/react */
 import {
-  Box, Flex, Heading, Text, Stack, Badge, Textarea, Button, VStack, HStack,
+  Box, Flex, Heading, Text, Textarea, Button, HStack,
 } from '@chakra-ui/react';
 import { FaUpload, FaPlay } from 'react-icons/fa';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Analytics from './components/Analytics/Analytics';
 import Messages from './components/Messages/Messages';
 
-const csvData = [
-  ['firstname', 'lastname', 'email'],
-  ['Ahmed', 'Tomi', 'ah@smthing.co.com'],
-  ['Raed', 'Labes', 'rl@smthing.co.com'],
-  ['Yezzi', 'Min l3b', 'ymin@cocococo.com'],
-];
-
 const Home = () => {
-  const [data, setData] = useState(csvData);
+  const name = useSelector(({ supervisorData }) => supervisorData.user.name);
+  const sid = useSelector(({ supervisorData }) => supervisorData.user.sid);
   return (
     <Box>
       <Box px="9" py="5" borderBottomColor="gray.300" borderBottomWidth="1px">
         <Heading size="lg" color="gray.600">MAP: Supervisor Dashboard</Heading>
       </Box>
       <Flex px="10" py="10" flexDirection="column" alignItems="center">
-        <Heading size="lg" mt="7" width="100%" maxW="1200px" mb="7">Analytics</Heading>
+        <Box mt="7" width="100%" maxW="1200px" mb="7">
+          <Heading size="lg">{`Welcome ${name},`}</Heading>
+          <Text>{`Supervisor ID: ${sid}, ${new Date().toLocaleDateString()}`}</Text>
+        </Box>
+
         <Analytics />
         <Messages />
         <Box width="100%" maxW={1200} mt="5">

@@ -1,4 +1,4 @@
 import FullscreenSpinner from './Spinner/FullscreenSpinner';
+import Spinner from './Spinner/Spinner';
 
-// eslint-disable-next-line import/prefer-default-export
-export { FullscreenSpinner };
+export { FullscreenSpinner, Spinner };
