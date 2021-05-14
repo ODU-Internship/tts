@@ -9,6 +9,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
+import 'react-datasheet/lib/react-datasheet.css';
 
 ReactDOM.render(
   <StrictMode>
