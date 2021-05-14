@@ -14,13 +14,11 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { useHistory, useRouteMatch } from 'react-router-dom';
 import { useAsyncRetry } from 'react-use';
 import { AiOutlineReload } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { Spinner } from '../../../../../components';
-import { getRepMessages } from '../../../../../store/apis';
 import { updateRepMessagesDispatch } from '../../../../../store/triggers';
 import Message from '../Message/Message';
 
@@ -35,9 +33,7 @@ const Tr = styled(BaseTR)(({ theme }) => {
 });
 
 const Messages = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
-  const { path } = useRouteMatch();
   const messages = useSelector(({ repData }) => repData.messages);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedMessage, setSelectedMessage] = useState();

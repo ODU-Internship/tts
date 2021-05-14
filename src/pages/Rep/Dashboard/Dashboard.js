@@ -3,37 +3,15 @@ import {
   Box,
   Flex,
   Heading,
-  Table,
   Button,
-  Thead,
-  Tbody,
   Text,
-  Tr as BaseTR,
-  Th,
-  Td,
-  TableCaption,
   Stack,
-  Badge,
-  useDisclosure,
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 import { useSelector } from 'react-redux';
-import { useHistory, useRouteMatch } from 'react-router-dom';
 import Messages from './components/Messages/Messages';
-
-const Tr = styled(BaseTR)(({ theme }) => {
-  const { colors } = theme;
-  return {
-    ':hover': {
-      cursor: 'pointer',
-      background: colors.gray[50],
-    },
-  };
-});
+import Upload from './components/Upload/Upload';
 
 const Dashboard = () => {
-  const history = useHistory();
-  const { path } = useRouteMatch();
   const name = useSelector(({ repData }) => repData.user.name);
   const cid = useSelector(({ repData }) => repData.user.cid);
   return (
@@ -48,17 +26,21 @@ const Dashboard = () => {
           <Heading size="lg">{`Welcome ${name},`}</Heading>
           <Text>{`CustomerCare Exectutive ID: ${cid}, ${new Date().toLocaleDateString()}`}</Text>
         </Box>
-        <Flex flexDirection="column">
-          <Button type="button" px="25" py="10">
-            Select a file
-          </Button>
-          <input type="file" style={{ display: 'none' }} />
-          <Box width="100%" maxW={1200} py="5">
-            <Heading size="xs">Upload Customer Data for Analysis</Heading>
-          </Box>
-        </Flex>
         <Box width="100%" maxW="1200px">
-          <Heading size="lg">Messages</Heading>
+          <Heading size="md" mb="5">Add a New Ticket</Heading>
+          <Upload />
+        </Box>
+        <Stack width="100%" maxW="1200px" mt="10">
+          <Heading size="md">Upload a CSV File</Heading>
+          <Flex flexDirection="column" width="100%" alignItems="center" p="5">
+            <Button type="button" px="25" py="10">
+              Select a file
+            </Button>
+            <Heading size="xs" mt="3">Upload Customer Data for Analysis</Heading>
+          </Flex>
+        </Stack>
+        <Box width="100%" maxW="1200px" mt="10">
+          <Heading size="md">Messages</Heading>
           <Messages />
         </Box>
       </Flex>
