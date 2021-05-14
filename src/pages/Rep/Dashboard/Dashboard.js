@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { useHistory, useRouteMatch } from 'react-router-dom';
+import Messages from './components/Messages/Messages';
 
 const Tr = styled(BaseTR)(({ theme }) => {
   const { colors } = theme;
@@ -27,7 +28,7 @@ const Tr = styled(BaseTR)(({ theme }) => {
   };
 });
 
-const Messages = () => {
+const Dashboard = () => {
   const history = useHistory();
   const { path } = useRouteMatch();
   return (
@@ -47,67 +48,13 @@ const Messages = () => {
             <Heading size="xs">Upload Customer Data for Analysis</Heading>
           </Box>
         </Flex>
-
-        <Box maxW="1200px" width="100%" mt="5" px="10" justifyContent="center">
-          <Heading size="lg">Uploaded Data</Heading>
-          <Box overflow="auto">
-            <Table variant="simple" mt="6" width="100%">
-              <TableCaption>Recent uploaded data</TableCaption>
-              <Thead>
-                <BaseTR>
-                  <Th>Category</Th>
-                  <Th>Message</Th>
-                  <Th>Result</Th>
-                  <Th isNumeric>Prediction</Th>
-                </BaseTR>
-              </Thead>
-              <Tbody>
-                <Tr onClick={() => history.push(`${path}/djlskf`)}>
-                  <Td>Email</Td>
-                  <Td>Welcome to map communication.....</Td>
-                  <Td>
-                    <Stack direction="row">
-                      <Badge>communication</Badge>
-                      <Badge colorScheme="green">Email</Badge>
-                      <Badge colorScheme="red">Sad</Badge>
-                      <Badge colorScheme="yellow">Happy</Badge>
-                    </Stack>
-                  </Td>
-                  <Td isNumeric>+0.91</Td>
-                </Tr>
-                <Tr onClick={() => history.push(`${path}/djlskf`)}>
-                  <Td>Email</Td>
-                  <Td>Welcome to map communication.....</Td>
-                  <Td>
-                    <Stack direction="row">
-                      <Badge>communication</Badge>
-                      <Badge colorScheme="green">Email</Badge>
-                      <Badge colorScheme="red">Sad</Badge>
-                      <Badge colorScheme="yellow">Happy</Badge>
-                    </Stack>
-                  </Td>
-                  <Td isNumeric>+0.91</Td>
-                </Tr>
-                <Tr>
-                  <Td>Email</Td>
-                  <Td>Welcome to map communication.....</Td>
-                  <Td>
-                    <Stack direction="row">
-                      <Badge>communication</Badge>
-                      <Badge colorScheme="green">Success</Badge>
-                      <Badge colorScheme="red">Removed</Badge>
-                      <Badge colorScheme="purple">New</Badge>
-                    </Stack>
-                  </Td>
-                  <Td isNumeric>+0.91</Td>
-                </Tr>
-              </Tbody>
-            </Table>
-          </Box>
+        <Box width="100%" maxW="1200px">
+          <Heading size="lg">Messages</Heading>
+          <Messages />
         </Box>
       </Flex>
     </Flex>
   );
 };
 
-export default Messages;
+export default Dashboard;
