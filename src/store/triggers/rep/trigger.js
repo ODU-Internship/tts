@@ -17,12 +17,12 @@ export const repTokenDispatch = (accessToken) => async (dispatch) => {
   dispatch(updateRepUser(rep));
 };
 
-export const updateRepMesaages = () => async (dispatch) => {
+export const updateRepMessagesDispatch = () => async (dispatch) => {
   const { data: messages } = await getRepMessages();
   dispatch(updateRepMessages(messages));
 };
 
-export const addRepMessage = (category, message, company, type) => async (dispatch) => {
+export const addRepMessageDispatch = (category, message, company, type) => async (dispatch) => {
   const { data: newMessage } = await postRepMessage(category, message, company, type);
   dispatch(updateRepMessages(newMessage));
 };

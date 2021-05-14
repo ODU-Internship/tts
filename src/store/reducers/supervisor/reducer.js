@@ -1,6 +1,6 @@
 import { UPDATE_SUPERVISOR_USER, UPDATE_SUPERVISOR_MESSAGES } from '../../actions';
 
-const supervisorReducer = (state = {}, action) => {
+const supervisorReducer = (state = { messages: [] }, action) => {
   switch (action.type) {
     case UPDATE_SUPERVISOR_USER:
       return { ...state, user: action.user };

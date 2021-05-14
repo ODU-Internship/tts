@@ -18,4 +18,5 @@ export const supervisorTokenDispatch = (accessToken) => async (dispatch) => {
 export const supervisorMessagesDispatch = () => async (dispatch) => {
   const { data: messages } = await getSupervisorMessages();
   dispatch(updateSupervisorMessages(messages));
+  return messages;
 };
