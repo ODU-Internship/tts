@@ -30,10 +30,7 @@ const Ticket = () => {
           </Stack>
           <Heading size="md" mt="7">Prediction: -0.91</Heading>
           <Heading size="md" mt="7">Text:</Heading>
-          <Textarea mt="2" minH="300px">
-            fdjlskdfjsdlkjf kdfjsdlkfjdsklfj
-            sdkfjlkdsfj lkdfljlkf sdfkljdslf dslkfjlsdkf sdlkfjlsdjf
-          </Textarea>
+          <Textarea mt="2" minH="300px" />
           <Button mt="3" colorScheme="green" leftIcon={<FaPlay />}>Reanalyse</Button>
         </Box>
       </Flex>
