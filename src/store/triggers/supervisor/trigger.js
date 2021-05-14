@@ -1,5 +1,5 @@
-import { updateSupervisorUser } from '../../actions';
-import { postSupervisorLogin, getSupervisorDetails } from '../../apis';
+import { updateSupervisorMessages, updateSupervisorUser } from '../../actions';
+import { postSupervisorLogin, getSupervisorDetails, getSupervisorMessages } from '../../apis';
 import { setSupervisorHeader } from '../../apis/axios';
 
 export const supervisorLoginDispatch = (sid, password) => async (dispatch) => {
@@ -13,4 +13,10 @@ export const supervisorTokenDispatch = (accessToken) => async (dispatch) => {
   setSupervisorHeader(accessToken);
   const { data: supervisor } = await getSupervisorDetails();
   dispatch(updateSupervisorUser(supervisor));
+};
+
+export const supervisorMessagesDispatch = () => async (dispatch) => {
+  const { data: messages } = await getSupervisorMessages();
+  dispatch(updateSupervisorMessages(messages));
+  return messages;
 };

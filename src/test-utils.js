@@ -6,7 +6,6 @@ const AllProviders = ({ children }) => (
   <ChakraProvider theme={theme}>{children}</ChakraProvider>
 );
 
-const customRender = (ui, options) =>
-  render(ui, { wrapper: AllProviders, ...options });
+const customRender = (ui, options) => render(ui, { wrapper: AllProviders, ...options });
 
 export { customRender as render };

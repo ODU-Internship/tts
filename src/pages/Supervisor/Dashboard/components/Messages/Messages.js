@@ -67,9 +67,7 @@ const Messages = () => {
                           </Stack>
                         </Td>
                         <Td>
-                          <Stack direction="row">
-                            {category?.map((cat) => <Badge key={cat} colorScheme="green">{cat}</Badge>)}
-                          </Stack>
+                          {category?.map((cat) => <Badge key={cat} colorScheme="green" mt="1" ms="1">{cat}</Badge>)}
                         </Td>
                         <Td>{message}</Td>
                         <Td>{company}</Td>
