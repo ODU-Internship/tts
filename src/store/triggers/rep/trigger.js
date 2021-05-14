@@ -1,4 +1,4 @@
-import { updateRepMessages, updateRepUser } from '../../actions';
+import { addRepMessage, updateRepMessages, updateRepUser } from '../../actions';
 import {
   postRepLogin, getRepDetails, getRepMessages, postRepMessage,
 } from '../../apis';
@@ -22,7 +22,11 @@ export const updateRepMessagesDispatch = () => async (dispatch) => {
   dispatch(updateRepMessages(messages));
 };
 
-export const addRepMessageDispatch = (category, message, company, type) => async (dispatch) => {
-  const { data: newMessage } = await postRepMessage(category, message, company, type);
-  dispatch(updateRepMessages(newMessage));
+export const addRepMessageDispatch = (
+  custName, custDetails, category, message, company, type,
+) => async (dispatch) => {
+  const { data: newMessage } = await postRepMessage(
+    custName, custDetails, category, message, company, type,
+  );
+  dispatch(addRepMessage(newMessage));
 };

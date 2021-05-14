@@ -12,8 +12,9 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Stack,
+  Box,
   Text,
+  VStack,
 } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
@@ -29,10 +30,10 @@ const Message = ({
       <ModalCloseButton />
       <ModalBody>
         <Heading size="sm">{`Customer Detail: ${custDetails}`}</Heading>
-        <Stack direction="row" mt="3">
+        <Box mt="3">
           <Heading size="sm">Categories:</Heading>
-          <HStack>{category?.map((cat) => <Badge key={cat} colorScheme="green">{cat}</Badge>)}</HStack>
-        </Stack>
+          {category?.map((cat) => <Badge key={cat} colorScheme="green" mt="1" me="1">{cat}</Badge>)}
+        </Box>
         <Heading size="sm" mt="3">{`Company: ${company}`}</Heading>
         <Heading size="sm" mt="3">{`Service Type: ${type}`}</Heading>
         <Heading size="sm" mt="2">Message:</Heading>

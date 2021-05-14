@@ -6,14 +6,24 @@ import {
 import { useState } from 'react';
 import { FaUpload } from 'react-icons/fa';
 import MultiSelect from 'react-multi-select-component';
+import { useDispatch } from 'react-redux';
+import { useAsyncFn } from 'react-use';
 import { TICKET_CATEGORIES } from '../../../../../constants';
+import { addRepMessageDispatch } from '../../../../../store/triggers/rep/trigger';
 
 const Upload = () => {
+  const dispatch = useDispatch();
   const [custName, setCustName] = useState('');
-  const [type, setType] = useState('Chat');
+  const [custDetails, setCustDetails] = useState('');
+  const [type, setType] = useState('Mobile');
   const [categories, setCategories] = useState([]);
   const [company, setCompany] = useState('');
   const [message, setMessage] = useState('');
+  const [{ loading }, doFetch] = useAsyncFn(async () => {
+    await addRepMessageDispatch(
+      custName, custDetails, categories.map(({ value }) => value), message, company, type,
+    )(dispatch);
+  });
   return (
     <Box>
       <Stack direction={['column', 'row']} spacing="24px">
@@ -48,11 +58,19 @@ const Upload = () => {
         onChange={setType}
         value={type}
       >
-        <Stack spacing={4} direction="row" onSe>
-          <Radio value="Chat">Chat</Radio>
+        <Stack spacing={4} direction="row">
+          <Radio value="Mobile">Mobile</Radio>
           <Radio value="Email">Email</Radio>
         </Stack>
       </RadioGroup>
+      <Input
+        placeholder={`Customer ${type}`}
+        mt="5"
+        value={custDetails}
+        onChange={(e) => {
+          setCustDetails(e.target.value);
+        }}
+      />
       <Textarea
         mt="5"
         minH="250px"
@@ -62,7 +80,15 @@ const Upload = () => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <Button colorScheme="green" leftIcon={<FaUpload />} mt="5">Add Data</Button>
+      <Button
+        colorScheme="green"
+        leftIcon={<FaUpload />}
+        mt="5"
+        isLoading={loading}
+        onClick={() => doFetch()}
+      >
+        Add Data
+      </Button>
     </Box>
   );
 };
