@@ -24,7 +24,7 @@ export const setSupervisorHeader = (accessToken) => {
 };
 
 export const setRepHeader = (accessToken) => {
-  sAxios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+  rAxios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 };
 
 export default baseAxios;
