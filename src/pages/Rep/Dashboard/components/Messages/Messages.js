@@ -11,13 +11,18 @@ import {
   Stack,
   Badge,
   Button,
+  useDisclosure,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { useAsyncRetry } from 'react-use';
 import { AiOutlineReload } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { Spinner } from '../../../../../components';
 import { getRepMessages } from '../../../../../store/apis';
+import { updateRepMessagesDispatch } from '../../../../../store/triggers';
+import Message from '../Message/Message';
 
 const Tr = styled(BaseTR)(({ theme }) => {
   const { colors } = theme;
@@ -31,13 +36,14 @@ const Tr = styled(BaseTR)(({ theme }) => {
 
 const Messages = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const { path } = useRouteMatch();
+  const messages = useSelector(({ repData }) => repData.messages);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedMessage, setSelectedMessage] = useState();
   const {
-    loading, error, value, retry,
-  } = useAsyncRetry(async () => {
-    const { data } = await getRepMessages();
-    return data;
-  }, []);
+    loading, error, retry,
+  } = useAsyncRetry(async () => updateRepMessagesDispatch()(dispatch), []);
   return (
     <Box overflow="auto">
       {!loading && <Button variant="outline" onClick={retry}><AiOutlineReload /></Button>}
@@ -49,6 +55,8 @@ const Messages = () => {
               <TableCaption>Recent data based on Sentimental Analysis</TableCaption>
               <Thead>
                 <BaseTR>
+                  <Th>Customer Name</Th>
+                  <Th>Customer Detail</Th>
                   <Th>Type</Th>
                   <Th>Category</Th>
                   <Th>Message</Th>
@@ -56,10 +64,20 @@ const Messages = () => {
                 </BaseTR>
               </Thead>
               <Tbody>
-                {value.map(({
-                  type, category, message, company, _id,
+                {messages.map(({
+                  type, category, message, company, _id, custName, custDetails,
                 }) => (
-                  <Tr onClick={() => history.push(`${path}/${_id}`)} key={_id}>
+                  <Tr
+                    onClick={() => {
+                      setSelectedMessage({
+                        type, category, message, company, _id, custName, custDetails,
+                      });
+                      onOpen();
+                    }}
+                    key={_id}
+                  >
+                    <Td>{custName}</Td>
+                    <Td>{custDetails}</Td>
                     <Td>{type}</Td>
                     <Td>
                       <Stack direction="row">
@@ -73,6 +91,7 @@ const Messages = () => {
               </Tbody>
             </Table>
           )}
+      <Message isOpen={isOpen} onClose={onClose} message={selectedMessage} />
     </Box>
   );
 };
