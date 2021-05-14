@@ -2,9 +2,9 @@ import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import {
   ChakraProvider,
-  theme,
 } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
+import theme from './theme';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
