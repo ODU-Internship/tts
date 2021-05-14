@@ -7,7 +7,7 @@ import { RiTaskLine } from 'react-icons/ri';
 const Admin = lazy(() => import('../pages/Admin/Admin'));
 const Supervisor = lazy(() => import('../pages/Supervisor/Supervisor'));
 const Home = lazy(() => import('../pages/Home/Home'));
-const Custrep = lazy(() => import('../pages/Custrep/Custrep'));
+const Rep = lazy(() => import('../pages/Rep/Rep'));
 
 const Router = () => (
   <BrowserRouter>
@@ -26,7 +26,7 @@ const Router = () => (
       >
         <Route path="/admin" component={Admin} />
         <Route path="/supervisor" component={Supervisor} />
-        <Route path="/custrep" component={Custrep} />
+        <Route path="/rep" component={Rep} />
         <Route exact path="/" component={Home} />
       </Suspense>
     </Switch>
