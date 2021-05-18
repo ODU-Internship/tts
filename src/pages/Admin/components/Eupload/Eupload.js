@@ -24,6 +24,14 @@ const Eupload = () => {
       await postAdminCustRep(
         empName, empID, empPass, mobile, email, gender,
       );
+      setEmpName('');
+      setEmpID('');
+      setEmpPass('');
+      setMobile('');
+      setEmail('');
+      setType('');
+      setGender('');
+
       toast({
         title: 'Customer Care Executive Added',
         description: error?.message,
@@ -34,6 +42,15 @@ const Eupload = () => {
       await postAdminSupervisor(
         empName, empID, empPass, mobile, email, gender,
       );
+
+      setEmpName('');
+      setEmpID('');
+      setEmpPass('');
+      setMobile('');
+      setEmail('');
+      setType('');
+      setGender('');
+
       toast({
         title: 'Supervisor Added',
         description: error?.message,
