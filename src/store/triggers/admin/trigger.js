@@ -20,6 +20,7 @@ import {
 export const adminLoginDispatch = (aid, password) => async (dispatch) => {
   const { data: admin } = await postAdminLogin(aid, password);
   dispatch(updateAdminUser(admin));
+  return admin;
 };
 
 export const adminSupervisorsDispatch = () => async (dispatch) => {

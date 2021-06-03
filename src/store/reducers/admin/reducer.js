@@ -2,10 +2,10 @@ import {
   UPDATE_ADMIN_USER,
   UPDATE_ADMIN_REPS,
   ADD_ADMIN_REP,
-  DELETE_ADMIN_REP,
+  REMOVE_ADMIN_REP,
   UPDATE_ADMIN_SUPERVISORS,
   ADD_ADMIN_SUPERVISOR,
-  DELETE_ADMIN_SUPERVISOR,
+  REMOVE_ADMIN_SUPERVISOR,
 } from '../../actions';
 
 const adminReducer = (state = { supervisors: {}, reps: {} }, action) => {
@@ -18,7 +18,7 @@ const adminReducer = (state = { supervisors: {}, reps: {} }, action) => {
       const { cid, ...rep } = action.rep;
       return { ...state, reps: { ...state.reps, [cid]: rep } };
     }
-    case DELETE_ADMIN_REP: {
+    case REMOVE_ADMIN_REP: {
       const reps = { ...state.reps };
       delete reps[action.cid];
       return { ...state, reps };
@@ -29,7 +29,7 @@ const adminReducer = (state = { supervisors: {}, reps: {} }, action) => {
       const { sid, ...supervisor } = action.supervisor;
       return { ...state, supervisors: { ...state.supervisors, [sid]: supervisor } };
     }
-    case DELETE_ADMIN_SUPERVISOR: {
+    case REMOVE_ADMIN_SUPERVISOR: {
       const supervisors = { ...state.supervisors };
       delete supervisors[action.sid];
       return { ...state, supervisors };
