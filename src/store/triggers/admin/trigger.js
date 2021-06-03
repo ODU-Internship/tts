@@ -10,17 +10,25 @@ import {
 import {
   deleteAdminRep,
   deleteAdminSupervisor,
+  getAdminDetails,
   getAdminReps,
   getAdminSupervisors,
   postAdminCustRep,
   postAdminLogin,
   postAdminSupervisor,
 } from '../../apis';
+import { setAdminHeader } from '../../apis/axios';
 
 export const adminLoginDispatch = (aid, password) => async (dispatch) => {
   const { data: admin } = await postAdminLogin(aid, password);
   dispatch(updateAdminUser(admin));
   return admin;
+};
+
+export const adminTokenDispatch = (accessToken) => async (dispatch) => {
+  setAdminHeader(accessToken);
+  const { data: rep } = await getAdminDetails();
+  dispatch(updateAdminUser(rep));
 };
 
 export const adminSupervisorsDispatch = () => async (dispatch) => {

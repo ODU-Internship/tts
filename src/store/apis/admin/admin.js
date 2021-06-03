@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { aAxios } from '../axios';
 
+export const getAdminDetails = () => aAxios.get('/me');
+
 export const postAdminCustRep = (name, cid, password, phone, email, gender) => aAxios.post('/reps', {
   name, cid, password, phone, email, gender,
 });

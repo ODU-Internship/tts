@@ -5,6 +5,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { useEffectOnce } from 'react-use';
 import { adminRepsDispatch, adminSupervisorsDispatch } from '../../../store/triggers';
+import EData from './components/EData/EData';
 import Eupload from './components/Eupload/Eupload';
 
 const Dashboard = () => {
@@ -29,6 +30,12 @@ const Dashboard = () => {
             Add a New Employee
           </Heading>
           <Eupload />
+        </Box>
+        <Box width="100%" maxW="1200px" py={10}>
+          <Heading size="md" mb="5">
+            Employee details
+          </Heading>
+          <EData />
         </Box>
       </Flex>
     </Flex>
