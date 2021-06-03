@@ -27,8 +27,8 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const tokens = await adminLoginDispatch(aid, password)(dispatch);
-      console.log(tokens);
+      const { tokens } = await adminLoginDispatch(aid, password)(dispatch);
+      setToken(tokens?.[0]?.accessToken);
       toast({
         title: 'Logged in succesfully',
         description: 'Welcome to your dashboard',
