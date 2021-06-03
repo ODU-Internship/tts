@@ -5,8 +5,9 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { FaUpload } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 import { useAsyncFn } from 'react-use';
-import { postAdminCustRep, postAdminSupervisor } from '../../../../store/apis';
+import { adminAddRepDispatch, adminAddSupervisorDispatch } from '../../../../../store/triggers';
 
 const Eupload = () => {
   const [empName, setEmpName] = useState('');
@@ -18,12 +19,13 @@ const Eupload = () => {
   const [gender, setGender] = useState('');
 
   const toast = useToast();
+  const dispatch = useDispatch();
 
   const [{ loading, error }, doFetch] = useAsyncFn(async () => {
     if (type === 'custRep') {
-      await postAdminCustRep(
+      await adminAddRepDispatch(
         empName, empID, empPass, mobile, email, gender,
-      );
+      )(dispatch);
       setEmpName('');
       setEmpID('');
       setEmpPass('');
@@ -39,9 +41,9 @@ const Eupload = () => {
         isClosable: true,
       });
     } else {
-      await postAdminSupervisor(
+      await adminAddSupervisorDispatch(
         empName, empID, empPass, mobile, email, gender,
-      );
+      )(dispatch);
 
       setEmpName('');
       setEmpID('');

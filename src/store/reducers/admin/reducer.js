@@ -12,8 +12,13 @@ const adminReducer = (state = { supervisors: {}, reps: {} }, action) => {
   switch (action.type) {
     case UPDATE_ADMIN_USER:
       return { ...state, user: action.user };
-    case UPDATE_ADMIN_REPS:
-      return { ...state, reps: action.reps };
+    case UPDATE_ADMIN_REPS: {
+      const reps = action.reps.reduce(
+        (initial, { cid, ...rep }) => ({ [cid]: rep, ...initial }),
+        {},
+      );
+      return { ...state, reps };
+    }
     case ADD_ADMIN_REP: {
       const { cid, ...rep } = action.rep;
       return { ...state, reps: { ...state.reps, [cid]: rep } };
@@ -23,11 +28,19 @@ const adminReducer = (state = { supervisors: {}, reps: {} }, action) => {
       delete reps[action.cid];
       return { ...state, reps };
     }
-    case UPDATE_ADMIN_SUPERVISORS:
-      return { ...state, supervisors: action.supervisors };
+    case UPDATE_ADMIN_SUPERVISORS: {
+      const supervisors = action.supervisors.reduce(
+        (initial, { sid, ...supervisor }) => ({ [sid]: supervisor, ...initial }),
+        {},
+      );
+      return { ...state, supervisors };
+    }
     case ADD_ADMIN_SUPERVISOR: {
       const { sid, ...supervisor } = action.supervisor;
-      return { ...state, supervisors: { ...state.supervisors, [sid]: supervisor } };
+      return {
+        ...state,
+        supervisors: { ...state.supervisors, [sid]: supervisor },
+      };
     }
     case REMOVE_ADMIN_SUPERVISOR: {
       const supervisors = { ...state.supervisors };
