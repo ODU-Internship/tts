@@ -49,6 +49,7 @@ const Messages = () => {
   const history = useHistory();
   const { path } = useRouteMatch();
   const messages = useSelector(({ supervisorData }) => supervisorData.messages);
+
   const {
     loading,
     retry,

@@ -3,10 +3,16 @@ import {
   Box, Flex, Heading, Textarea, Text, Stack, Badge, Button,
 } from '@chakra-ui/react';
 import { FaPlay } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useAsyncRetry } from 'react-use';
 
 const Ticket = () => {
   const { messageID } = useParams();
+  const message = useSelector(({ supervisorData }) => supervisorData.messages[messageID]);
+  const { loading, error, value } = useAsyncRetry(async () => {
+  }, []);
+  console.log(message);
   return (
     <>
       {' '}
@@ -14,7 +20,7 @@ const Ticket = () => {
         <Heading size="lg" color="gray.600">
           MAP: Supervisor Dashboard
           {' > '}
-          {messageID}
+          {message?.custName}
         </Heading>
       </Box>
       <Flex px="10" py="10" flexDirection="column" alignItems="center">
