@@ -17,13 +17,11 @@ const Eupload = () => {
   const [email, setEmail] = useState('');
   const [type, setType] = useState('');
   const [gender, setGender] = useState('');
-  const [isLoading, setLoading] = useState(false);
 
   const toast = useToast();
   const dispatch = useDispatch();
 
   const [{ loading, error }, doFetch] = useAsyncFn(async () => {
-    setLoading(true);
     if (type === 'custRep') {
       await adminAddRepDispatch(
         empName, empID, empPass, mobile, email, gender,
@@ -61,12 +59,10 @@ const Eupload = () => {
         status: 'success',
         isClosable: true,
       });
-      setLoading(false);
     }
   }, [empName, empID, empPass, mobile, email, gender, type]);
 
   useEffect(() => {
-    setLoading(false);
     if (error) {
       toast({
         title: 'Operation Failed',
