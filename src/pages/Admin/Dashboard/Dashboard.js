@@ -10,10 +10,6 @@ import Eupload from './components/Eupload/Eupload';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  useEffectOnce(() => {
-    adminSupervisorsDispatch()(dispatch);
-    adminRepsDispatch()(dispatch);
-  });
   return (
     <Flex direction="column">
       <Box px="9" py="5" borderBottomColor="gray.300" borderBottomWidth="1px">

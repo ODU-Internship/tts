@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { aAxios } from '../axios';
 
 export const getAdminDetails = () => aAxios.get('/me');
@@ -15,6 +14,6 @@ export const getAdminSupervisors = () => aAxios.get('/supervisors');
 
 export const getAdminReps = () => aAxios.get('/reps');
 
-export const deleteAdminSupervisor = (sid) => axios.delete(`/supervisors/${sid}`);
+export const deleteAdminSupervisor = (sid) => aAxios.delete(`/supervisors/${sid}`);
 
-export const deleteAdminRep = (cid) => axios.delete(`/reps/${cid}`);
+export const deleteAdminRep = (cid) => aAxios.delete(`/reps/${cid}`);
