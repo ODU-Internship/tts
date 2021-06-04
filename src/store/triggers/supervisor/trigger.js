@@ -5,6 +5,7 @@ import {
   getSupervisorMessages,
   getSupervisorMessage,
   putSupervisorMessage,
+  postRetrains,
 } from '../../apis';
 import { setSupervisorHeader } from '../../apis/axios';
 
@@ -34,5 +35,6 @@ export const supervisorMessageDispatch = (messageID) => async (dispatch) => {
 
 export const supervisorUpdateMessageDispatch = (messageID, message) => async (dispatch) => {
   const { data: newMessage } = await putSupervisorMessage(messageID, message);
+  postRetrains(message.message, message.label);
   dispatch(updateSupervisorMessage(newMessage));
 };

@@ -18,7 +18,7 @@ const SupervisorRoute = ({ component, ...rest }) => {
     try {
       if (token) { await supervisorTokenDispatch(token)(dispatch); }
     } catch (e) {
-      console.log(e);
+      //
     }
     setLoading(false);
   }, [token]);

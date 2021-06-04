@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useAsyncFn, useAsyncRetry, useEffectOnce } from 'react-use';
+import { useAsyncFn, useAsyncRetry } from 'react-use';
 import { BsPlus } from 'react-icons/bs';
 import { GrRefresh } from 'react-icons/gr';
 import { FullscreenSpinner, InlineInput } from '../../../components';
@@ -39,19 +39,17 @@ const Ticket = () => {
     ({ supervisorData }) => supervisorData.messages[messageID],
   );
   const {
-    loading, error, retry,
+    loading, retry,
   } = useAsyncRetry(async () => {
     await supervisorMessageDispatch(messageID)(dispatch);
   }, []);
   const [{ loading: loadingUpdate }, doFetch] = useAsyncFn(async () => {
     await supervisorUpdateMessageDispatch(messageID, {
-      custName,
-      company,
-      custDetails,
       label: labels,
       category: categories,
+      message: text,
     })(dispatch);
-  }, [custName, company, custDetails, labels, categories]);
+  }, [custName, company, custDetails, labels, categories, text]);
 
   const handleSetLabels = (e, index) => {
     labels[index] = e.target.innerText;
@@ -161,7 +159,7 @@ const Ticket = () => {
               isLoading={loadingUpdate}
               onClick={doFetch}
             >
-              Save and Update Modal
+              Save and Update Prediciton Model
             </Button>
             <Button
               variant="outline"
