@@ -27,7 +27,7 @@ export const supervisorMessagesDispatch = () => async (dispatch) => {
   return messages;
 };
 
-export const sueprvisorMessageDispatch = (messageID) => async (dispatch) => {
+export const supervisorMessageDispatch = (messageID) => async (dispatch) => {
   const { data: message } = await getSupervisorMessage(messageID);
   dispatch(updateSupervisorMessage(message));
 };

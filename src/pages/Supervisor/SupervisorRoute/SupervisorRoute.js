@@ -15,7 +15,11 @@ const SupervisorRoute = ({ component, ...rest }) => {
   const [token] = useLocalStorage(SUPERVISOR_ACCESS_TOKEN);
   const dispatch = useDispatch();
   useEffect(async () => {
-    if (token) { await supervisorTokenDispatch(token)(dispatch); }
+    try {
+      if (token) { await supervisorTokenDispatch(token)(dispatch); }
+    } catch (e) {
+      console.log(e);
+    }
     setLoading(false);
   }, [token]);
   const { path } = useRouteMatch();
