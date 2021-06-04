@@ -3,9 +3,7 @@ import {
   Box,
   Flex,
   Heading,
-  Button,
   Text,
-  Stack,
 } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import Messages from './components/Messages/Messages';
@@ -30,17 +28,8 @@ const Dashboard = () => {
           <Heading size="md" mb="5">Add a New Ticket</Heading>
           <Upload />
         </Box>
-        <Stack width="100%" maxW="1200px" mt="10">
-          <Heading size="md">Upload a CSV File</Heading>
-          <Flex flexDirection="column" width="100%" alignItems="center" p="5">
-            <Button type="button" px="25" py="10">
-              Select a file
-            </Button>
-            <Heading size="xs" mt="3">Upload Customer Data for Analysis</Heading>
-          </Flex>
-        </Stack>
         <Box width="100%" maxW="1200px" mt="10">
-          <Heading size="md">Messages</Heading>
+          <Heading size="lg">Messages</Heading>
           <Messages />
         </Box>
       </Flex>
