@@ -15,7 +15,9 @@ const AdminRoute = ({ component, ...rest }) => {
   const [token] = useLocalStorage(ADMIN_ACCESS_TOKEN);
   const dispatch = useDispatch();
   useEffect(async () => {
-    if (token) { await adminTokenDispatch(token)(dispatch); }
+    if (token) {
+      await adminTokenDispatch(token)(dispatch);
+    }
     setLoading(false);
   }, [token]);
   const { path } = useRouteMatch();

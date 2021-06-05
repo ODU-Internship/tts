@@ -35,12 +35,8 @@ const Ticket = () => {
   const dispatch = useDispatch();
   const { messageID } = useParams();
 
-  const message = useSelector(
-    ({ supervisorData }) => supervisorData.messages[messageID],
-  );
-  const {
-    loading, retry,
-  } = useAsyncRetry(async () => {
+  const message = useSelector(({ supervisorData }) => supervisorData.messages[messageID]);
+  const { loading, retry } = useAsyncRetry(async () => {
     await supervisorMessageDispatch(messageID)(dispatch);
   }, []);
   const [{ loading: loadingUpdate }, doFetch] = useAsyncFn(async () => {
@@ -99,22 +95,11 @@ const Ticket = () => {
           </Heading>
           <Stack direction="row" mt="5" w="100%">
             {labels.map((label, index) => (
-              <Badge
-                colorScheme="yellow"
-                key={`${label}-${Math.random() * 100}`}
-              >
-                <InlineInput
-                  value={label}
-                  onChange={(e) => handleSetLabels(e, index)}
-                />
+              <Badge colorScheme="yellow" key={`${label}-${Math.random() * 100}`}>
+                <InlineInput value={label} onChange={(e) => handleSetLabels(e, index)} />
               </Badge>
             ))}
-            <IconButton
-              variant="outline"
-              minW="7"
-              h="auto"
-              onClick={handleAddLabel}
-            >
+            <IconButton variant="outline" minW="7" h="auto" onClick={handleAddLabel}>
               <BsPlus size="20" />
             </IconButton>
           </Stack>
@@ -123,22 +108,11 @@ const Ticket = () => {
           </Heading>
           <Stack direction="row" mt="5" w="100%">
             {categories.map((category, index) => (
-              <Badge
-                colorScheme="green"
-                key={`${category}-${Math.random() * 100}`}
-              >
-                <InlineInput
-                  value={category}
-                  onChange={(e) => handleSetCategories(e, index)}
-                />
+              <Badge colorScheme="green" key={`${category}-${Math.random() * 100}`}>
+                <InlineInput value={category} onChange={(e) => handleSetCategories(e, index)} />
               </Badge>
             ))}
-            <IconButton
-              variant="outline"
-              minW="7"
-              h="auto"
-              onClick={handleAddCategory}
-            >
+            <IconButton variant="outline" minW="7" h="auto" onClick={handleAddCategory}>
               <BsPlus size="20" />
             </IconButton>
           </Stack>
@@ -146,12 +120,7 @@ const Ticket = () => {
           <Heading size="md" mt="7">
             Text:
           </Heading>
-          <Textarea
-            mt="2"
-            minH="300px"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
+          <Textarea mt="2" minH="300px" value={text} onChange={(e) => setText(e.target.value)} />
           <Flex mt="3" alignItems="center">
             <Button
               colorScheme="green"

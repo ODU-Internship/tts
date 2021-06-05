@@ -23,9 +23,7 @@ const Eupload = () => {
 
   const [{ loading, error }, doFetch] = useAsyncFn(async () => {
     if (type === 'custRep') {
-      await adminAddRepDispatch(
-        empName, empID, empPass, mobile, email, gender,
-      )(dispatch);
+      await adminAddRepDispatch(empName, empID, empPass, mobile, email, gender)(dispatch);
       setEmpName('');
       setEmpID('');
       setEmpPass('');
@@ -41,9 +39,7 @@ const Eupload = () => {
         isClosable: true,
       });
     } else {
-      await adminAddSupervisorDispatch(
-        empName, empID, empPass, mobile, email, gender,
-      )(dispatch);
+      await adminAddSupervisorDispatch(empName, empID, empPass, mobile, email, gender)(dispatch);
 
       setEmpName('');
       setEmpID('');
@@ -76,7 +72,6 @@ const Eupload = () => {
   return (
     <Box>
       <Stack direction={['column', 'row']} spacing="24px" py="20px">
-
         <Input
           placeholder="Employee Name"
           value={empName}
@@ -99,7 +94,6 @@ const Eupload = () => {
           onChange={(e) => {
             setEmpPass(e.target.value);
           }}
-
         />
       </Stack>
       <Stack direction={['column', 'row']} spacing="24px" py="30px">
@@ -130,16 +124,10 @@ const Eupload = () => {
           <option value="other">Other</option>
         </Select>
       </Stack>
-      <RadioGroup
-        defaultValue="1"
-        mt="5"
-        onChange={setType}
-        value={type}
-      >
+      <RadioGroup defaultValue="1" mt="5" onChange={setType} value={type}>
         <Stack spacing={4} direction="row">
           <Radio value="custRep">Customer Care Executive</Radio>
           <Radio value="supervisor">Supervisor</Radio>
-
         </Stack>
       </RadioGroup>
 

@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
 import {
-  Box, Table,
+  Box,
+  Table,
   Thead,
   Tbody,
   Tr as BaseTR,
@@ -36,54 +37,70 @@ const Messages = () => {
   const messages = useSelector(({ repData }) => repData.messages);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedMessage, setSelectedMessage] = useState();
-  const {
-    loading, error, retry,
-  } = useAsyncRetry(async () => updateRepMessagesDispatch()(dispatch), []);
+  const { loading, error, retry } = useAsyncRetry(
+    async () => updateRepMessagesDispatch()(dispatch),
+    [],
+  );
   return (
     <Box overflow="auto">
-      {!loading && <Button variant="outline" onClick={retry}><AiOutlineReload /></Button>}
-      {loading ? <Spinner />
-        : error
-          ? error.message
-          : (
-            <Table variant="simple" mt="6" width="100%">
-              <TableCaption>Recent data based on Sentimental Analysis</TableCaption>
-              <Thead>
-                <BaseTR>
-                  <Th>Customer Name</Th>
-                  <Th>Customer Detail</Th>
-                  <Th>Type</Th>
-                  <Th>Category</Th>
-                  <Th>Message</Th>
-                  <Th>Company</Th>
-                </BaseTR>
-              </Thead>
-              <Tbody>
-                {messages.map(({
-                  type, category, message, company, _id, custName, custDetails,
-                }) => (
-                  <Tr
-                    onClick={() => {
-                      setSelectedMessage({
-                        type, category, message, company, _id, custName, custDetails,
-                      });
-                      onOpen();
-                    }}
-                    key={_id}
-                  >
-                    <Td>{custName}</Td>
-                    <Td>{custDetails}</Td>
-                    <Td>{type}</Td>
-                    <Td>
-                      {category?.map((cat) => <Badge key={cat} colorScheme="green" mt="1" ms="1">{cat}</Badge>)}
-                    </Td>
-                    <Td>{message}</Td>
-                    <Td>{company}</Td>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-          )}
+      {!loading && (
+        <Button variant="outline" onClick={retry}>
+          <AiOutlineReload />
+        </Button>
+      )}
+      {loading ? (
+        <Spinner />
+      ) : error ? (
+        error.message
+      ) : (
+        <Table variant="simple" mt="6" width="100%">
+          <TableCaption>Recently added Messages</TableCaption>
+          <Thead>
+            <BaseTR>
+              <Th>Customer Name</Th>
+              <Th>Customer Detail</Th>
+              <Th>Type</Th>
+              <Th>Category</Th>
+              <Th>Message</Th>
+              <Th>Company</Th>
+            </BaseTR>
+          </Thead>
+          <Tbody>
+            {messages.map(({
+              type, category, message, company, _id, custName, custDetails,
+            }) => (
+              <Tr
+                onClick={() => {
+                  setSelectedMessage({
+                    type,
+                    category,
+                    message,
+                    company,
+                    _id,
+                    custName,
+                    custDetails,
+                  });
+                  onOpen();
+                }}
+                key={_id}
+              >
+                <Td>{custName}</Td>
+                <Td>{custDetails}</Td>
+                <Td>{type}</Td>
+                <Td>
+                  {category?.map((cat) => (
+                    <Badge key={cat} colorScheme="green" mt="1" ms="1">
+                      {cat}
+                    </Badge>
+                  ))}
+                </Td>
+                <Td>{message}</Td>
+                <Td>{company}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      )}
       <Message isOpen={isOpen} onClose={onClose} message={selectedMessage} />
     </Box>
   );

@@ -14,12 +14,7 @@ const Router = () => (
     <Switch>
       <Suspense
         fallback={(
-          <Flex
-            justifyContent="center"
-            alignItems="center"
-            width="100vw"
-            height="100vh"
-          >
+          <Flex justifyContent="center" alignItems="center" width="100vw" height="100vh">
             <RiTaskLine size="40" />
           </Flex>
         )}

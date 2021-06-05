@@ -22,7 +22,12 @@ const Upload = () => {
 
   const [{ loading }, doFetch] = useAsyncFn(async () => {
     await addRepMessageDispatch(
-      custName, custDetails, categories.map(({ value }) => value), message, company, type,
+      custName,
+      custDetails,
+      categories.map(({ value }) => value),
+      message,
+      company,
+      type,
     )(dispatch);
   }, [custName, custDetails, categories, message, company, type]);
 
@@ -54,12 +59,7 @@ const Upload = () => {
         />
       </Stack>
 
-      <RadioGroup
-        defaultValue="1"
-        mt="5"
-        onChange={setType}
-        value={type}
-      >
+      <RadioGroup defaultValue="1" mt="5" onChange={setType} value={type}>
         <Stack spacing={4} direction="row">
           <Radio value="Mobile">Mobile</Radio>
           <Radio value="Email">Email</Radio>

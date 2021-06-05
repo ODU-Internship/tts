@@ -16,76 +16,89 @@ const Element = styled.p(() => ({
   },
 }));
 
-const InlineInput = forwardRef(({
-  tag, onBlur, onKeyDown, onChange, value, isMultiline, allowNonEmpty, disabled,
-  trimWhitespace, ...props
-}, ref) => {
-  const inputRef = useRef(null);
-
-  useImperativeHandle(ref, () => ({
-    focus: () => {
-      inputRef.current.focus();
+const InlineInput = forwardRef(
+  (
+    {
+      tag,
+      onBlur,
+      onKeyDown,
+      onChange,
+      value,
+      isMultiline,
+      allowNonEmpty,
+      disabled,
+      trimWhitespace,
+      ...props
     },
-  }));
+    ref,
+  ) => {
+    const inputRef = useRef(null);
 
-  const handleKeyDown = (e) => {
-    if (disabled) return;
+    useImperativeHandle(ref, () => ({
+      focus: () => {
+        inputRef.current.focus();
+      },
+    }));
 
-    if (e.which === 13 && !isMultiline) {
-      e.preventDefault();
-    }
+    const handleKeyDown = (e) => {
+      if (disabled) return;
 
-    if (typeof onKeyDown === 'function') {
-      onKeyDown(e);
-    }
-  };
+      if (e.which === 13 && !isMultiline) {
+        e.preventDefault();
+      }
 
-  const handleBlur = (e) => {
-    if (disabled) return;
+      if (typeof onKeyDown === 'function') {
+        onKeyDown(e);
+      }
+    };
 
-    const { innerText } = e.target;
+    const handleBlur = (e) => {
+      if (disabled) return;
 
-    if (!allowNonEmpty && !innerText) {
-      inputRef.current.innerText = value;
-    }
+      const { innerText } = e.target;
 
-    if (trimWhitespace) {
-      inputRef.current.innerText = inputRef.current.innerText.trim();
-    }
+      if (!allowNonEmpty && !innerText) {
+        inputRef.current.innerText = value;
+      }
 
-    if (typeof onChange === 'function') {
-      if (value !== innerText) {
-        if (allowNonEmpty || innerText) {
-          onChange(e);
+      if (trimWhitespace) {
+        inputRef.current.innerText = inputRef.current.innerText.trim();
+      }
+
+      if (typeof onChange === 'function') {
+        if (value !== innerText) {
+          if (allowNonEmpty || innerText) {
+            onChange(e);
+          }
         }
       }
-    }
 
-    if (typeof onBlur === 'function') {
-      onBlur(e);
-    }
-  };
+      if (typeof onBlur === 'function') {
+        onBlur(e);
+      }
+    };
 
-  return (
-    <div style={{ display: 'inline-block' }}>
-      {/* These empty characters shield the contenteditable from arbitrary focus */}
-      &#8203;
-      <Element
-        as={tag || 'h3'}
-        onBlur={handleBlur}
-        onKeyDown={handleKeyDown}
-        contentEditable={!disabled}
-        spellCheck="false"
-        suppressContentEditableWarning
-        ref={inputRef}
-        {...props}
-      >
-        {value}
-      </Element>
-      &#8203;
-    </div>
-  );
-});
+    return (
+      <div style={{ display: 'inline-block' }}>
+        {/* These empty characters shield the contenteditable from arbitrary focus */}
+        &#8203;
+        <Element
+          as={tag || 'h3'}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          contentEditable={!disabled}
+          spellCheck="false"
+          suppressContentEditableWarning
+          ref={inputRef}
+          {...props}
+        >
+          {value}
+        </Element>
+        &#8203;
+      </div>
+    );
+  },
+);
 
 InlineInput.propTypes = {
   tag: PropTypes.string,

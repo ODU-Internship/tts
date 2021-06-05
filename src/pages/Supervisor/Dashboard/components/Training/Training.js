@@ -2,7 +2,17 @@
 
 import {
   Badge,
-  Box, Button, Flex, Heading, Stack, Table, Tbody, Td, Th, Thead, Tr,
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Stack,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from '@chakra-ui/react';
 import { AiOutlineReload } from 'react-icons/ai';
 import { useAsyncRetry } from 'react-use';
@@ -32,15 +42,18 @@ const Training = () => {
     <Box width="100%" maxW={1200} mt="5">
       <Flex justifyContent="space-between" mt="10" mb="5">
         <Heading size="lg">Retraining data</Heading>
-        {!loading && <Button variant="outline" onClick={retry} float="right"><AiOutlineReload /></Button>}
+        {!loading && (
+          <Button variant="outline" onClick={retry} float="right">
+            <AiOutlineReload />
+          </Button>
+        )}
       </Flex>
       <Text>{`Retrains scheduled for  ${tomorrow.toDateString()}.`}</Text>
       <Box overflow="auto" position="relative">
-        { loading
-        && (
-        <TableOverlay>
-          <Spinner />
-        </TableOverlay>
+        {loading && (
+          <TableOverlay>
+            <Spinner />
+          </TableOverlay>
         )}
 
         <Table variant="simple" mt="6" width="100%">
@@ -51,29 +64,24 @@ const Training = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {value && value.data.map(({
-              label, message, _id,
-            }) => (
-              <Tr key={_id}>
-                <Td>
-                  <Stack direction="row">
-                    {label?.map((lab) => (
-                      <Badge
-                        key={lab}
-                        colorScheme="yellow"
-                      >
-                        {lab}
-                      </Badge>
-                    ))}
-                  </Stack>
-                </Td>
-                <Td>{message}</Td>
-              </Tr>
-            ))}
+            {value
+              && value.data.map(({ label, message, _id }) => (
+                <Tr key={_id}>
+                  <Td>
+                    <Stack direction="row">
+                      {label?.map((lab) => (
+                        <Badge key={lab} colorScheme="yellow">
+                          {lab}
+                        </Badge>
+                      ))}
+                    </Stack>
+                  </Td>
+                  <Td>{message}</Td>
+                </Tr>
+              ))}
           </Tbody>
         </Table>
       </Box>
-
     </Box>
   );
 };

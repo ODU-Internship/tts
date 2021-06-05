@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import {
-  Box, Flex, Heading,
-} from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 import EData from './components/EData/EData';
 import Eupload from './components/Eupload/Eupload';
 

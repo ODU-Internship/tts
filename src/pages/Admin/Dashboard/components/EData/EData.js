@@ -65,9 +65,7 @@ const Messages = () => {
             error.message
           ) : (
             <>
-              <TableCaption>
-                Recent data based on Sentimental Analysis
-              </TableCaption>
+              <TableCaption>Recently added Employees</TableCaption>
               <Thead>
                 <Tr>
                   <Th>Employee ID</Th>
@@ -80,50 +78,40 @@ const Messages = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {Object.entries(supervisors).map(
-                  ([sid, {
-                    name, email, phone, gender,
-                  }]) => (
-                    <Tr>
-                      <td>{sid}</td>
-                      <td>Supervisor</td>
-                      <Td>{name}</Td>
-                      <Td>{email}</Td>
-                      <Td>{phone}</Td>
-                      <Td>{gender}</Td>
-                      <Td>
-                        <Button
-                          variant="outline"
-                          onClick={() => handleDelete('supervisor', sid)}
-                        >
-                          <AiOutlineDelete />
-                        </Button>
-                      </Td>
-                    </Tr>
-                  ),
-                )}
-                {Object.entries(reps).map(
-                  ([cid, {
-                    name, email, phone, gender,
-                  }]) => (
-                    <Tr>
-                      <td>{cid}</td>
-                      <td>Representative</td>
-                      <Td>{name}</Td>
-                      <Td>{email}</Td>
-                      <Td>{phone}</Td>
-                      <Td>{gender}</Td>
-                      <Td>
-                        <Button
-                          variant="outline"
-                          onClick={() => handleDelete('custRep', cid)}
-                        >
-                          <AiOutlineDelete />
-                        </Button>
-                      </Td>
-                    </Tr>
-                  ),
-                )}
+                {Object.entries(supervisors).map(([sid, {
+                  name, email, phone, gender,
+                }]) => (
+                  <Tr>
+                    <td>{sid}</td>
+                    <td>Supervisor</td>
+                    <Td>{name}</Td>
+                    <Td>{email}</Td>
+                    <Td>{phone}</Td>
+                    <Td>{gender}</Td>
+                    <Td>
+                      <Button variant="outline" onClick={() => handleDelete('supervisor', sid)}>
+                        <AiOutlineDelete />
+                      </Button>
+                    </Td>
+                  </Tr>
+                ))}
+                {Object.entries(reps).map(([cid, {
+                  name, email, phone, gender,
+                }]) => (
+                  <Tr>
+                    <td>{cid}</td>
+                    <td>Representative</td>
+                    <Td>{name}</Td>
+                    <Td>{email}</Td>
+                    <Td>{phone}</Td>
+                    <Td>{gender}</Td>
+                    <Td>
+                      <Button variant="outline" onClick={() => handleDelete('custRep', cid)}>
+                        <AiOutlineDelete />
+                      </Button>
+                    </Td>
+                  </Tr>
+                ))}
               </Tbody>
             </>
           )}

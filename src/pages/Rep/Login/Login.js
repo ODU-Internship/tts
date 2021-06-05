@@ -51,7 +51,6 @@ const Login = () => {
 
   return (
     <Flex width="100vw" alignItems="center" justifyContent="center" mt="40">
-
       <VStack as="form" onSubmit={handleSubmit}>
         <Heading pb="10">CustomerCare Representative login</Heading>
         <Input
@@ -72,13 +71,7 @@ const Login = () => {
             setPassword(e.target.value);
           }}
         />
-        <Button
-          type="submit"
-          mt="10"
-          w="100%"
-          isLoading={isLoading}
-          maxW="350px"
-        >
+        <Button type="submit" mt="10" w="100%" isLoading={isLoading} maxW="350px">
           Login
         </Button>
       </VStack>

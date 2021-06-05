@@ -19,9 +19,7 @@ import { csvToJSON } from '../../../../../util';
 
 const Test = () => {
   const [text, setText] = useState('');
-  const [{ loading, value }, predict] = useAsyncFn(() => testModel(text), [
-    text,
-  ]);
+  const [{ loading, value }, predict] = useAsyncFn(() => testModel(text), [text]);
   const csvRef = useRef();
   const toast = useToast();
 
@@ -30,9 +28,10 @@ const Test = () => {
       return;
     }
     try {
-      const messages = csvToJSON(
-        await e.target.files[0].text(),
-      ).map(({ message, label }) => ({ message, label: [label] }));
+      const messages = csvToJSON(await e.target.files[0].text()).map(({ message, label }) => ({
+        message,
+        label: [label],
+      }));
       messages.pop();
 
       await trainModel(messages);
@@ -55,7 +54,7 @@ const Test = () => {
   };
   return (
     <Box width="100%" maxW={1200} mt="5">
-      <Heading size="lg">Mantain your Model</Heading>
+      <Heading size="lg">Maintain your Model</Heading>
       <Text mt="1">Test your sentimental analysis model</Text>
       <Box>
         <Textarea
@@ -71,7 +70,7 @@ const Test = () => {
         />
         {value && (
           <Box mt="10">
-            <Heading size="md">Result: </Heading>
+            <Heading size="md">#1 Model Result: </Heading>
             <Stack direction="row" mt="3">
               <Heading size="sm">Labels: </Heading>
               <Stack>
@@ -81,18 +80,27 @@ const Test = () => {
                   </Badge>
                 ))}
               </Stack>
-              <Heading size="sm"> Predicition: </Heading>
+              <Heading size="sm"> Prediction: </Heading>
               <Text>{value.prediction}</Text>
+            </Stack>
+            <Heading size="md" mt="2">
+              #2 Model Result:
+              {' '}
+            </Heading>
+            <Stack direction="row" mt="3">
+              <Heading size="sm">Negative: </Heading>
+              <Text>{JSON.stringify(value.vader.neg)}</Text>
+              <Heading size="sm">Neutral: </Heading>
+              <Text>{JSON.stringify(value.vader.neu)}</Text>
+              <Heading size="sm">Positive: </Heading>
+              <Text>{JSON.stringify(value.vader.pos)}</Text>
+              <Heading size="sm">Prediction: </Heading>
+              <Text>{JSON.stringify(value.vader.compound)}</Text>
             </Stack>
           </Box>
         )}
         <HStack mt="3" w="100%">
-          <Button
-            colorScheme="green"
-            leftIcon={<FaPlay />}
-            onClick={predict}
-            isLoading={loading}
-          >
+          <Button colorScheme="green" leftIcon={<FaPlay />} onClick={predict} isLoading={loading}>
             Analyse
           </Button>
         </HStack>

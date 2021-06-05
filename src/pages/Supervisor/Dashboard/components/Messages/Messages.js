@@ -1,7 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
 import {
-  Box, Heading, Table,
+  Box,
+  Heading,
+  Table,
   Thead,
   Tbody,
   Tr as BaseTR,
@@ -50,22 +52,22 @@ const Messages = () => {
   const { path } = useRouteMatch();
   const messages = useSelector(({ supervisorData }) => supervisorData.messages);
 
-  const {
-    loading,
-    retry,
-  } = useAsyncRetry(async () => supervisorMessagesDispatch()(dispatch), []);
+  const { loading, retry } = useAsyncRetry(async () => supervisorMessagesDispatch()(dispatch), []);
   return (
     <Box maxW="1200px" width="100%" mt="5">
       <Flex justifyContent="space-between" mt="10" mb="5">
         <Heading size="lg">Recent Tickets</Heading>
-        {!loading && <Button variant="outline" onClick={retry} float="right"><AiOutlineReload /></Button>}
+        {!loading && (
+          <Button variant="outline" onClick={retry} float="right">
+            <AiOutlineReload />
+          </Button>
+        )}
       </Flex>
       <Box overflow="auto" position="relative">
-        { loading
-        && (
-        <TableOverlay>
-          <Spinner />
-        </TableOverlay>
+        {loading && (
+          <TableOverlay>
+            <Spinner />
+          </TableOverlay>
         )}
 
         <Table variant="simple" mt="6" width="100%">
@@ -81,28 +83,37 @@ const Messages = () => {
             </BaseTR>
           </Thead>
           <Tbody>
-            {Object.entries(messages).map(([id, {
-              type, label, category, message, company, prediction,
-            }]) => (
-              <Tr onClick={() => history.push(`${path}/${id}`)} key={id}>
-                <Td>{type}</Td>
-                <Td>
-                  <Stack direction="row">
-                    {label?.map((lab) => <Badge key={lab} colorScheme={prediction < 0 ? 'red' : 'yellow'}>{lab}</Badge>)}
-                  </Stack>
-                </Td>
-                <Td>
-                  {category?.map((cat) => <Badge key={cat} colorScheme="green" mt="1" ms="1">{cat}</Badge>)}
-                </Td>
-                <Td>{message}</Td>
-                <Td>{company}</Td>
-                <Td isNumeric>{prediction}</Td>
-              </Tr>
-            ))}
+            {Object.entries(messages).map(
+              ([id, {
+                type, label, category, message, company, prediction,
+              }]) => (
+                <Tr onClick={() => history.push(`${path}/${id}`)} key={id}>
+                  <Td>{type}</Td>
+                  <Td>
+                    <Stack direction="row">
+                      {label?.map((lab) => (
+                        <Badge key={lab} colorScheme={prediction < 0 ? 'red' : 'yellow'}>
+                          {lab}
+                        </Badge>
+                      ))}
+                    </Stack>
+                  </Td>
+                  <Td>
+                    {category?.map((cat) => (
+                      <Badge key={cat} colorScheme="green" mt="1" ms="1">
+                        {cat}
+                      </Badge>
+                    ))}
+                  </Td>
+                  <Td>{message}</Td>
+                  <Td>{company}</Td>
+                  <Td isNumeric>{prediction}</Td>
+                </Tr>
+              ),
+            )}
           </Tbody>
         </Table>
       </Box>
-
     </Box>
   );
 };
