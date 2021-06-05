@@ -7,7 +7,10 @@ export const testModel = async (message) => {
   const { data } = await axios.post('https://tts-model-alpha.herokuapp.com/predict', {
     emails: [message],
   });
-  return { label: [data.sentiment[0]], prediction: data.probability[0] };
+  const senti = await axios.post('https://vader-model-alpha.herokuapp.com/predict', {
+    message,
+  });
+  return { label: [data.sentiment[0]], prediction: data.probability[0], vader: senti.data };
 };
 
 export const trainModel = (messages) => baseAxios.post('/trains', messages);

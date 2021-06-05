@@ -65,7 +65,7 @@ const Messages = () => {
             error.message
           ) : (
             <>
-              <TableCaption>Recent data based on Sentimental Analysis</TableCaption>
+              <TableCaption>Recently added Employees</TableCaption>
               <Thead>
                 <Tr>
                   <Th>Employee ID</Th>

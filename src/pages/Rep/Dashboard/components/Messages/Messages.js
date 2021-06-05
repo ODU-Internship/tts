@@ -54,7 +54,7 @@ const Messages = () => {
         error.message
       ) : (
         <Table variant="simple" mt="6" width="100%">
-          <TableCaption>Recent data based on Sentimental Analysis</TableCaption>
+          <TableCaption>Recently added Messages</TableCaption>
           <Thead>
             <BaseTR>
               <Th>Customer Name</Th>
