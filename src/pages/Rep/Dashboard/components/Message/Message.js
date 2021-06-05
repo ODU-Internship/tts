@@ -17,7 +17,9 @@ import {
 import PropTypes from 'prop-types';
 
 const Message = ({
-  isOpen, onClose, message: {
+  isOpen,
+  onClose,
+  message: {
     type, category, message, company, custName, custDetails,
   },
 }) => (
@@ -30,13 +32,18 @@ const Message = ({
         <Heading size="sm">{`Customer Detail: ${custDetails}`}</Heading>
         <Box mt="3">
           <Heading size="sm">Categories:</Heading>
-          {category?.map((cat) => <Badge key={cat} colorScheme="green" mt="1" me="1">{cat}</Badge>)}
+          {category?.map((cat) => (
+            <Badge key={cat} colorScheme="green" mt="1" me="1">
+              {cat}
+            </Badge>
+          ))}
         </Box>
         <Heading size="sm" mt="3">{`Company: ${company}`}</Heading>
         <Heading size="sm" mt="3">{`Service Type: ${type}`}</Heading>
-        <Heading size="sm" mt="2">Message:</Heading>
+        <Heading size="sm" mt="2">
+          Message:
+        </Heading>
         <Text>{message}</Text>
-
       </ModalBody>
       <ModalFooter>
         <Button colorScheme="blue" mr={3} onClick={onClose}>
@@ -71,7 +78,6 @@ Message.defaultProps = {
     _id: '',
     custName: '',
     custDetails: '',
-
   },
 };
 

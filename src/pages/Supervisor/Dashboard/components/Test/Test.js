@@ -19,9 +19,7 @@ import { csvToJSON } from '../../../../../util';
 
 const Test = () => {
   const [text, setText] = useState('');
-  const [{ loading, value }, predict] = useAsyncFn(() => testModel(text), [
-    text,
-  ]);
+  const [{ loading, value }, predict] = useAsyncFn(() => testModel(text), [text]);
   const csvRef = useRef();
   const toast = useToast();
 
@@ -30,9 +28,10 @@ const Test = () => {
       return;
     }
     try {
-      const messages = csvToJSON(
-        await e.target.files[0].text(),
-      ).map(({ message, label }) => ({ message, label: [label] }));
+      const messages = csvToJSON(await e.target.files[0].text()).map(({ message, label }) => ({
+        message,
+        label: [label],
+      }));
       messages.pop();
 
       await trainModel(messages);
@@ -87,12 +86,7 @@ const Test = () => {
           </Box>
         )}
         <HStack mt="3" w="100%">
-          <Button
-            colorScheme="green"
-            leftIcon={<FaPlay />}
-            onClick={predict}
-            isLoading={loading}
-          >
+          <Button colorScheme="green" leftIcon={<FaPlay />} onClick={predict} isLoading={loading}>
             Analyse
           </Button>
         </HStack>

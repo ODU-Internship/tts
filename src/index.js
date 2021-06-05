@@ -1,8 +1,6 @@
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import {
-  ChakraProvider,
-} from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
 import theme from './theme';
 import App from './App';

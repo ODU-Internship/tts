@@ -15,7 +15,9 @@ const RepRoute = ({ component, ...rest }) => {
   const [token] = useLocalStorage(REP_ACCESS_TOKEN);
   const dispatch = useDispatch();
   useEffect(async () => {
-    if (token) { await repTokenDispatch(token)(dispatch); }
+    if (token) {
+      await repTokenDispatch(token)(dispatch);
+    }
     setLoading(false);
   }, [token]);
   const { path } = useRouteMatch();

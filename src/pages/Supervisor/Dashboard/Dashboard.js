@@ -14,7 +14,9 @@ const Home = () => {
   return (
     <Box>
       <Box px="9" py="5" borderBottomColor="gray.300" borderBottomWidth="1px">
-        <Heading size="lg" color="gray.600">MAP: Supervisor Dashboard</Heading>
+        <Heading size="lg" color="gray.600">
+          MAP: Supervisor Dashboard
+        </Heading>
       </Box>
       <Flex px="10" pt="10" pb="20" flexDirection="column" alignItems="center">
         <Box mt="7" width="100%" maxW="1200px" mb="7">

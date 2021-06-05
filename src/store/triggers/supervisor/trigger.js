@@ -1,4 +1,8 @@
-import { updateSupervisorMessage, updateSupervisorMessages, updateSupervisorUser } from '../../actions';
+import {
+  updateSupervisorMessage,
+  updateSupervisorMessages,
+  updateSupervisorUser,
+} from '../../actions';
 import {
   postSupervisorLogin,
   getSupervisorDetails,

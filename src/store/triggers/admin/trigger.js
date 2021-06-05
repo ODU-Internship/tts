@@ -45,14 +45,7 @@ export const adminAddSupervisorDispatch = (
   email,
   gender,
 ) => async (dispatch) => {
-  const { data: supervisor } = await postAdminSupervisor(
-    name,
-    sid,
-    password,
-    phone,
-    email,
-    gender,
-  );
+  const { data: supervisor } = await postAdminSupervisor(name, sid, password, phone, email, gender);
   dispatch(addAdminSupervisor(supervisor));
   return supervisor;
 };
@@ -76,14 +69,7 @@ export const adminAddRepDispatch = (
   email,
   gender,
 ) => async (dispatch) => {
-  const { data: rep } = await postAdminCustRep(
-    name,
-    sid,
-    password,
-    phone,
-    email,
-    gender,
-  );
+  const { data: rep } = await postAdminCustRep(name, sid, password, phone, email, gender);
   dispatch(addAdminRep(rep));
   return rep;
 };

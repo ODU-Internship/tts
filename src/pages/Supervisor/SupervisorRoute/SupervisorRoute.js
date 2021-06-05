@@ -16,7 +16,9 @@ const SupervisorRoute = ({ component, ...rest }) => {
   const dispatch = useDispatch();
   useEffect(async () => {
     try {
-      if (token) { await supervisorTokenDispatch(token)(dispatch); }
+      if (token) {
+        await supervisorTokenDispatch(token)(dispatch);
+      }
     } catch (e) {
       //
     }

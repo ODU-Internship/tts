@@ -4,10 +4,9 @@ import baseAxios from '../axios';
 export const postRetrains = (message, label) => baseAxios.post('/retrains', { message, label });
 
 export const testModel = async (message) => {
-  const { data } = await axios.post(
-    'https://tts-model-alpha.herokuapp.com/predict',
-    { emails: [message] },
-  );
+  const { data } = await axios.post('https://tts-model-alpha.herokuapp.com/predict', {
+    emails: [message],
+  });
   return { label: [data.sentiment[0]], prediction: data.probability[0] };
 };
 

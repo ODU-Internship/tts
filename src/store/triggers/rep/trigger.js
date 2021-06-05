@@ -23,10 +23,20 @@ export const updateRepMessagesDispatch = () => async (dispatch) => {
 };
 
 export const addRepMessageDispatch = (
-  custName, custDetails, category, message, company, type,
+  custName,
+  custDetails,
+  category,
+  message,
+  company,
+  type,
 ) => async (dispatch) => {
   const { data: newMessage } = await postRepMessage(
-    custName, custDetails, category, message, company, type,
+    custName,
+    custDetails,
+    category,
+    message,
+    company,
+    type,
   );
   dispatch(addRepMessage(newMessage));
 };

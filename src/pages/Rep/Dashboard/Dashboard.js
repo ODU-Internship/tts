@@ -1,9 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import {
-  Box,
-  Flex,
-  Heading,
-  Text,
+  Box, Flex, Heading, Text,
 } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import Messages from './components/Messages/Messages';
@@ -25,7 +22,9 @@ const Dashboard = () => {
           <Text>{`CustomerCare Exectutive ID: ${cid}, ${new Date().toLocaleDateString()}`}</Text>
         </Box>
         <Box width="100%" maxW="1200px">
-          <Heading size="md" mb="5">Add a New Ticket</Heading>
+          <Heading size="md" mb="5">
+            Add a New Ticket
+          </Heading>
           <Upload />
         </Box>
         <Box width="100%" maxW="1200px" mt="10">
