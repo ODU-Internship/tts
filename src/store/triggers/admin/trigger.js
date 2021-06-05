@@ -21,6 +21,7 @@ import { setAdminHeader } from '../../apis/axios';
 
 export const adminLoginDispatch = (aid, password) => async (dispatch) => {
   const { data: admin } = await postAdminLogin(aid, password);
+  setAdminHeader(admin.tokens[0].accessToken);
   dispatch(updateAdminUser(admin));
   return admin;
 };
