@@ -70,7 +70,7 @@ const Test = () => {
         />
         {value && (
           <Box mt="10">
-            <Heading size="md">Result: </Heading>
+            <Heading size="md">#1 Model Result: </Heading>
             <Stack direction="row" mt="3">
               <Heading size="sm">Labels: </Heading>
               <Stack>
@@ -84,7 +84,7 @@ const Test = () => {
               <Text>{value.prediction}</Text>
             </Stack>
             <Heading size="md" mt="2">
-              Vader Result:
+              #2 Model Result:
               {' '}
             </Heading>
             <Stack direction="row" mt="3">
@@ -94,7 +94,7 @@ const Test = () => {
               <Text>{JSON.stringify(value.vader.neu)}</Text>
               <Heading size="sm">Positive: </Heading>
               <Text>{JSON.stringify(value.vader.pos)}</Text>
-              <Heading size="sm">Compound: </Heading>
+              <Heading size="sm">Prediction: </Heading>
               <Text>{JSON.stringify(value.vader.compound)}</Text>
             </Stack>
           </Box>
