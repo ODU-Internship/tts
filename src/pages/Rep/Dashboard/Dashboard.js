@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import {
-  Box, Flex, Heading, Text,
+  Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading, Text,
 } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -14,8 +14,14 @@ const Dashboard = () => {
     <Flex direction="column">
       <Box px="9" py="5" borderBottomColor="gray.300" borderBottomWidth="1px">
         <Heading size="lg" color="gray.600">
-          <Link to="/">MAP: </Link>
-          Customer Care Executive Dashboard
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <BreadcrumbLink as={Link} to="/" replace>MAP</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem isCurrentPage>
+              <BreadcrumbLink>Representative Dashboard</BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
         </Heading>
       </Box>
       <Flex px="10" py="10" flexDirection="column" alignItems="center">
