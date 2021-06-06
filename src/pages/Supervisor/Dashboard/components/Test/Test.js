@@ -10,10 +10,12 @@ import {
   Stack,
   Badge,
   useToast,
+  Link,
 } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
 import { FaUpload, FaPlay } from 'react-icons/fa';
 import { useAsyncFn } from 'react-use';
+import { BiLinkExternal } from 'react-icons/bi';
 import { testModel, trainModel } from '../../../../../store/apis';
 import { csvToJSON } from '../../../../../util';
 
@@ -108,19 +110,20 @@ const Test = () => {
           Upload CSV and Train Model
         </Heading>
         <Text mt="1">
-          Train your model from scratch by uploading a dataset. Use the
-          {' '}
-          <Button
-            variant="link"
-            as="a"
+          Train your model from scratch by uploading a dataset.
+          Upload a CSV file to create your dataset for training.
+          (
+          <Link
+            isExternal
+            color="gray.600"
             href="https://storage.googleapis.com/tasktracker-odu.appspot.com/example.csv"
             target="_blank"
             rel="noopener noreferrer"
           >
-            sample
-          </Button>
-          {' '}
-          CSV file to create your dataset.
+            Sample CSV
+            <BiLinkExternal css={{ display: 'inline', marginLeft: 2 }} />
+          </Link>
+          )
         </Text>
 
         <Button
