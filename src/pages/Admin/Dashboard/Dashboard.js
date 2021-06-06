@@ -1,5 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import {
+  Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex, Heading,
+} from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import EData from './components/EData/EData';
 import Eupload from './components/Eupload/Eupload';
 
@@ -7,7 +10,14 @@ const Dashboard = () => (
   <Flex direction="column">
     <Box px="9" py="5" borderBottomColor="gray.300" borderBottomWidth="1px">
       <Heading size="lg" color="gray.600">
-        MAP: Admin Dashboard
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <BreadcrumbLink as={Link} to="/" replace>MAP</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbItem isCurrentPage>
+            <BreadcrumbLink>Admin Dashboard</BreadcrumbLink>
+          </BreadcrumbItem>
+        </Breadcrumb>
       </Heading>
     </Box>
     <Flex px="10" py="10" flexDirection="column" alignItems="center">

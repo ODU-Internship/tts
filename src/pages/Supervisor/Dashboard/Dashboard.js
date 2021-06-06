@@ -1,8 +1,13 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /** @jsxImportSource @emotion/react */
+import { useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
 import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
   Box, Flex, Heading, Text,
 } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
 import Test from './components/Test/Test';
 import Analytics from './components/Analytics/Analytics';
 import Messages from './components/Messages/Messages';
@@ -15,7 +20,14 @@ const Home = () => {
     <Box>
       <Box px="9" py="5" borderBottomColor="gray.300" borderBottomWidth="1px">
         <Heading size="lg" color="gray.600">
-          MAP: Supervisor Dashboard
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <BreadcrumbLink as={RouterLink} to="/" replace>MAP</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbItem isCurrentPage>
+              <BreadcrumbLink>Supervisor Dashboard</BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
         </Heading>
       </Box>
       <Flex px="10" pt="10" pb="20" flexDirection="column" alignItems="center">

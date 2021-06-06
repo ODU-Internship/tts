@@ -31,7 +31,7 @@ const Login = () => {
       const { tokens } = await supervisorLoginDispatch(sid, password)(dispatch);
       setToken(tokens[0].accessToken);
       toast({
-        title: 'Logged in succesfully',
+        title: 'Logged in successfully',
         description: 'Welcome to your dashboard',
         status: 'success',
         duration: 9000,
