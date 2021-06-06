@@ -6,7 +6,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
   Box, Flex, Heading, Text,
 } from '@chakra-ui/react';
 import Test from './components/Test/Test';
