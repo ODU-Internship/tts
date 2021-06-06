@@ -31,7 +31,7 @@ const Login = () => {
       const { tokens } = await repLoginDispatch(cid, password)(dispatch);
       setToken(tokens[0].accessToken);
       toast({
-        title: 'Logged in succesfully',
+        title: 'Logged in successfully',
         description: 'Welcome to your dashboard',
         status: 'success',
         duration: 9000,
@@ -55,7 +55,7 @@ const Login = () => {
         <Heading pb="10">CustomerCare Representative login</Heading>
         <Input
           maxW="350px"
-          placeholder="sid"
+          placeholder="cid"
           value={cid}
           onChange={(e) => {
             setCid(e.target.value);

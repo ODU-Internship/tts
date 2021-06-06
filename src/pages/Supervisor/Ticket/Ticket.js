@@ -13,7 +13,7 @@ import {
 import { useEffect, useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useAsyncFn, useAsyncRetry } from 'react-use';
 import { BsPlus } from 'react-icons/bs';
 import { GrRefresh } from 'react-icons/gr';
@@ -81,7 +81,7 @@ const Ticket = () => {
       {' '}
       <Box px="9" py="5" borderBottomColor="gray.300" borderBottomWidth="1px">
         <Heading size="lg" color="gray.600">
-          MAP: Supervisor Dashboard
+          <Link to="/supervisor">MAP: Supervisor Dashboard</Link>
           {' > '}
           {custName}
         </Heading>
@@ -128,7 +128,7 @@ const Ticket = () => {
               isLoading={loadingUpdate}
               onClick={doFetch}
             >
-              Save and Update Prediciton Model
+              Save and Update Prediction Model
             </Button>
             <Button
               variant="outline"

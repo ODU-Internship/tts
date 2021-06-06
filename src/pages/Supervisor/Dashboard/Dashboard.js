@@ -3,6 +3,7 @@ import {
   Box, Flex, Heading, Text,
 } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Test from './components/Test/Test';
 import Analytics from './components/Analytics/Analytics';
 import Messages from './components/Messages/Messages';
@@ -15,7 +16,8 @@ const Home = () => {
     <Box>
       <Box px="9" py="5" borderBottomColor="gray.300" borderBottomWidth="1px">
         <Heading size="lg" color="gray.600">
-          MAP: Supervisor Dashboard
+          <Link to="/">MAP: </Link>
+          Supervisor Dashboard
         </Heading>
       </Box>
       <Flex px="10" pt="10" pb="20" flexDirection="column" alignItems="center">
